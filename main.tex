@@ -1289,6 +1289,8 @@ We let $\calK = \Q+\Q\alpha+\Q\beta+\Q\alpha \beta$ where $\alpha^2, \beta^2$ ar
     \]
     using the relation $(\alpha\beta)^2 = -\alpha^2 \beta^2.$ We let $|q|=q\bar q \in \R.$ Since $\alpha^2, \beta^2<0$, $|q| = 0$ iff $a=b=c=d=0$ iff $q=0$. Thus if $q\ne 0$, we have $\frac{\bar q}{|q|} q = 1 = q \frac{\bar q}{|q|}$, so $q$ is invertible.
 \end{proof}
+
+\topic{Exercises}
 \tocexercise{Exercise 19}{Let $\calK$ be a quaternion algebra.
 \begin{enumerate}[(a)]
     \item Prove that $\calK \otimes\, \overline{\Q} \cong M_2(\overline{\Q}).$
@@ -1486,7 +1488,7 @@ but we only need that $\calO=\Z+\Z\omega$ and $\{1, \omega\}$ is $\Z$-linearly i
     so equality holds throughout. Therefore $x=b+cdx$ for some $b,c\in \Z$. But this implies that $b=0$ and $cd=1$, hence $d=1$, i.e., $\calR = \Z+f\calO$ as desired.
 \end{proof}
 
-\tocexercise{Exercise 30}{Let $A$ be a finite abelian group of order $N^r.$ Suppose that for every $D\mid N$ we have $\# A[D]=D^r$, where $A[D]$ denotes the subgroup consisting of all elements of order dividing $D.$ Prove that
+\tocexercise{Exercise 30}{Let $A$ be a finite abelian group of order $N^r.$ Suppose that for every $D\mid N$ we have $\# A[D]=D^r$, where $A[D]$ denotes the subgroup consisting of all elements annihilated by $D.$ Prove that
 \[
 A \cong (\Z/N\Z)^r.
 \]
@@ -1546,6 +1548,193 @@ A \cong (\Z/N\Z)^r.
     \]
     
 \end{proof}
+
+\chapterheading{Chapter IV: The Formal Group of an Elliptic Curve}
+
+\topic{Exercises}
+
+\tocexercise{Exercise 1}{Let $F(X,Y)\in R\llbracket X,Y\rrbracket$ be a power series satisfying
+\[
+F(X,Y)=X+Y+\dots \quad \text{ and } \quad F(X,F(Y,Z))=F(F(X,Y),Z).
+\]
+\begin{enumerate}[(a)]
+    \item Show that there is a unique power series $i(T)\in R\llbracket T \rrbracket$ satisfying $F(T,i(T))=0.$ Prove that $i(T)$ also satisfies $F(i(T),T)=0.$
+    \item Prove that $F(X,0)=X$ and $F(0,Y)=Y.$
+\end{enumerate}
+}
+Our approach will be to reduce the proof of (a) to that of (b), and then independently prove (b).
+\begin{proof}
+    (a) We will assume (b) holds, so we let $$F(X,Y)=X+Y+\sum_{m,n \ge 1} a_{mn} X^m Y^n.$$ We then compute
+    \[
+    F(T,i(T))=T+i(T)+\sum_{m,n\ge 1} a_{mn}T^m i(T)^n.
+    \]
+    Therefore, if we want $0=F(T,i(T))$, we get
+    \[
+    i(T)\equiv 0 \mod T
+    \]
+    so we may write 
+    \[
+    i(T)=\sum_{k\ge 1} b_k T^k.
+    \]
+    Continuing the assertion $F(T,i(T))=0$, we have
+    \[
+    0\equiv T+i(T)\equiv T+b_1T \mod T^2
+    \]
+    since for any $m,n\ge 1$, since $i(T)\equiv 0 \mod T$, it follows that $T^m i(T) \equiv 0 \mod T^2.$ Therefore $b_1=-1$ is uniquely determined. Now assume for induction that each of $b_1, \dots, b_{\ell -1}$ are all uniquely determined. We have
+    \[
+    0\equiv \sum_{k=2}^\ell b_k T^k +  \sum_{\substack{m,n\ge 1\\
+    m+n\le \ell}} a_{mn} T^m \left( \sum_{k=1}^{\lfloor (\ell-m)/n\rfloor } b_k T^k\right)^n \mod T^{\ell+1}.
+    \]
+    We notice that the only possible term of the polynomial
+    \[
+    \sum_{\substack{m,n\ge 1\\
+    m+n\le \ell}} a_{mn} T^m \left( \sum_{k=1}^{\lfloor (\ell-m)/n\rfloor } b_k T^k\right)^n
+    \]
+    involving $b_\ell$ is when $k=\ell$, but this is never achieved since $m\ge 1$. Therefore
+    \[
+    0\equiv \sum_{k=2}^\ell b_k T^k +  \sum_{\substack{m,n\ge 1\\
+    m+n\le \ell}} a_{mn} T^m \left( \sum_{k=1}^{\lfloor (\ell-m)/n\rfloor } b_k T^k\right)^n\equiv b_\ell T^\ell +P(b_1, \dots, b_{\ell-1})T^\ell \mod T^{\ell+1}
+    \]
+    for some polynomial $P(b_1, \dots, b_{\ell-1})$ because by induction we may assume that $F(T,i(T))\equiv 0 \mod T^{\ell}$. More explicitly, 
+    \[
+    P(b_1, \dots, b_{\ell-1}) =
+\sum_{\substack{m,n \ge 1 \\ m+n \le \ell}}
+a_{mn}\!\!\!\!\sum_{\substack{k_1+\cdots+k_n=\ell-m \\ 1 \le k_i \le \lfloor(\ell-m)/n\rfloor}}
+\;\;\prod_{i=1}^n b_{k_i}.
+    \]
+    Therefore $b_\ell=-P(b_1, \dots, b_{\ell-1})$, so $b_\ell$ is uniquely determined as well. This proves uniqueness of $i(T)$, and also shows that we may select the $b_i$ (and must by uniqueness) to be such that for each $n\ge 1$,
+    \[
+    F(T,i(T))\equiv 0 \mod T^n.
+    \]
+    Therefore, it must be that actually $F(T,i(T))\in R\llbracket T \rrbracket$ must actually equal $0$ (for any $f,g\in R\llbracket T \rrbracket$, if for all $n\ge 1$, $f\equiv g \mod T^n$, then $f=g$).
+
+    Now we must show that $F(i(T),T)=0$ as well. We have
+    \[
+    T=F(0,T)=F(F(T,i(T)),T)=F(T,F(i(T),T)).
+    \]
+    For ease of notation, we let $g(T)=F(i(T),T)$, so we must show $g(T)=0.$ We know that
+    \[
+    T= T+g(T)+\sum_{m,n\ge 1} a_{mn}T^m g(T)^n
+    \]
+    so
+    \[
+    0=g(T)+\sum_{m,n\ge 1} a_{mn}T^m g(T)^n.
+    \]
+    Because for any $f,g\in R\llbracket T\rrbracket$, if $f\equiv g \mod T^\ell$ for every $\ell \ge 1$, then $f=g$, it suffices for our claim to show that for each $\ell\ge 1$, $g(T)\equiv 0 \mod T^\ell.$ Since each term in the sum is divisible by $T$, it follows immediately that $g(T)\equiv 0 \mod T.$ Now by induction, we assume $g(T)\equiv 0 \mod T^{\ell-1}.$ Thus for any $m,n\ge 1$, we get that $T^mg(T)^n \equiv 0 \mod T^\ell$, hence
+    \[
+    0\equiv g(T) \mod T^\ell
+    \]
+    as claimed.
+
+    For (b), we write $F(X,Y)=\sum_{m,n\ge 0} a_{mn} X^m Y^n$ where $a_{00}=0$ and $a_{10}=a_{01}=1.$ We have
+    \[
+    F(X,0)=F(X,F(0,0))=F(F(X,0),0).
+    \]
+    Let $G(X)=F(X,0)=\sum_{n\ge 1} \alpha_n X^n$ where $\alpha_n = a_{n0}$, so $$G(X)=G(G(X))=\sum_{m\ge 1} \alpha_m \left( \sum_{n\ge 1} \alpha_n X^n\right)^m.$$ This implies
+    \[
+    0=\sum_{m\ge 2} a_{m0} G(X)^m.
+    \]
+    We will show by induction that $\alpha_n=0$ for $n\ge 2.$ To show $\alpha_2=0$, we have
+    \[
+    X+\alpha_2X^2 \equiv G(X) \equiv X+\alpha_2X^2+\alpha_2X^2\mod X^3
+    \]
+    which shows that
+    \[
+    \alpha_2 =0.
+    \]
+    Now suppose that $\alpha_2=\dots = \alpha_{\ell-1}=0$, i.e., $G(X)=X+\sum_{n\ge \ell} \alpha_n X^n.$ Then
+    \[
+    G(X) = G(X)+\sum_{m\ge \ell} \alpha_m \left( X+\sum_{n\ge \ell} \alpha_n X^n \right)^m
+    \]
+    hence
+    \[
+    0=\sum_{m\ge \ell} \alpha_m \left( X+\sum_{n\ge \ell} \alpha_n X^n \right)^m.
+    \]
+    Considering the equation modulo $X^{\ell+1}$, we get
+    \[
+    0\equiv \alpha_\ell X^\ell \mod X^{\ell+1}
+    \]
+    since $X\sum_{n\ge \ell} \alpha_n X^n \equiv 0 \mod X^{\ell+1}$ and for any $m\ge \ell$,
+    \[
+    \left( \sum_{n\ge \ell} \alpha_n X^n\right)^m \equiv 0 \mod X^{\ell^2}
+    \]
+    which implies that this same expression is congruent to $0$ modulo $X^{\ell+1}$ since $\ell^2 \ge \ell+1$ because $\ell \ge 2.$ This shows every term in the binomial expansion of 
+    \[
+    \left( X+\sum_{n\ge \ell} \alpha_n X^n \right)^m
+    \]
+    is congruent to $0$ modulo $X^{\ell+1}$, except for the term $X^\ell$ if $m=\ell$. This shows $\alpha_\ell=0$ as well as claimed.
+
+    An identical proof, replacing $G(X)$ by $F(0,Y)=F(F(0,0),Y)=F(0,F(0,Y))$ and $\alpha_n$ by $a_{0n}$, shows also that $F(0,Y)=Y$.
+\end{proof}
+
+\chapterheading{Chapter V: Elliptic Curves over Finite Fields}
+
+\topic{Exercises}
+
+\tocexercise{Exercise 1}{Verify the Weil conjectures for $V=\P^N.$}
+\begin{proof}
+    Rationality: we must compute $\# \P^N(\F_{q^n})$ for each $n\ge1.$ First of all, there are $q^n-1$ distinct $N+1$-tuples of elements in $\F_{q^n}$ that all represent the same point in $\P^n(\F_{q^n})$, one for each nonzero element of $\F_{q^n}.$ Thus
+    \[
+    \#\P^n(\F_{q^n}) = \frac{\# (\F_{q^n}^{N+1}\setminus 0)}{q^n-1} = \frac{q^{n(N+1)}-1}{q^n-1}=\sum_{i=0}^N q^{ni}.
+    \]
+    Thus
+    \[
+    Z(V/\F_q;T)=\exp(\sum_{n\ge1} (\sum_{i=0}^N q^{ni})\frac{T^n}{n}).
+    \]
+    Therefore
+    \[
+    \log Z(V/\F_q;T)= \sum_{n\ge 1} (\sum_{i=0}^N q^{ni}) \frac{T^n}{n}=\sum_{i=0}^N \sum_{n\ge 1} \frac{(q^iT)^n}{n}=\sum_{i=0}^N -\log(1-q^iT) = \log (\prod_{i=0}^N \frac{1}{1-q^iT})
+    \]
+    which gives
+    \[
+    Z(V/\F_q;T)= \prod_{i=0}^N \frac{1}{1-q^iT} \in \Q(T).
+    \]
+
+    Functional Equation: We compute
+    \begin{align*}
+        &Z(V/\F_q; \frac{1}{q^NT}) = \prod_{i=0}^N \frac{1}{1-q^{i-N}T^{-1}} = \prod_{i=0}^N \frac{q^NT}{q^NT-q^i} = \prod_{i=0}^N \frac{q^NT}{-q^i} \frac{1}{1-q^{N-i}T}\\
+        &= (-1)^{N+1}q^{N(N+1)/2}T^{N+1} Z(V/\F_q;T).
+    \end{align*}
+    Thus the Euler characteristic $\eps$ is $N+1.$
+
+    Riemann Hypothesis: We have that for each $i$, $P_{2i}=1-q^iT \in \Z[T]$ and $P_{2i+1}=1\in \Z[T]$. Then for the odd indices, the polynomial has degree $0$, hence the claim about the $\alpha_{ij}$ is vacuous. For $P_{2i}=1-q^iT$, we see it has degree $1$ and the only $\alpha_{ij}$ is $q^i$, so clearly $|\alpha_{ij}|=q^{i/2}.$
+
+   
+\end{proof}
+
+ \tocexercise{Exercise 12}{Prove that for every prime $p\ge 3$, the elliptic curve 
+    \[
+    E: y^2=x^3+x
+    \]
+    satisfies
+    \[
+    \# E(\F_p) \equiv 0 \mod 4.
+    \]
+    }
+    \begin{proof}
+        First we consider the case where $p\equiv 3 \mod 4.$ By Example 4.5, we know the primes congruent to 3 modulo 4 are exactly the primes where $E(\F_p)$ is supersingular. We know from \_ $E(\F_p)$ is supersingular iff $A_p=0$, where $A_p$ is the coefficient of $x^{p-1}$ in the expansion of $(x^3+x)^{(p-1)/2}$. For $p\ge 5$ congruent to $3$ modulo 4, we have by Hasse's inequality that
+        \[
+        |a|\le 2\sqrt{p}<p.
+        \]
+        Since $a\equiv A_p=0 \mod p$ and $|a|<p$, it follows that $a=0$ so $\#E(\F_p)=p+1-a=p+1\equiv 0 \mod 4.$
+
+        We explicitly verify that for $p=3$, $E(\F_p)=\{O, (0,0), (2,0), (-2,0)\}$ so also $\# E(\F_p)=p+1.$
+
+
+        Now we may assume that $p\equiv 1 \mod 4$. Clearly it suffices to show $\#E(\F_p)[2]=4$ since the order of a subgroup divides the order of the group it lives in. Let $i\in \F_p$ be such that $i^2=-1.$ We claim $E(\F_p)[2]=\{O, (0,0), (\pm i, 0)\}$. For this claim, it suffices to show that if $P=(x,y)$ is such that $2P=O$, then $y=0$ since $x^3+x=x(x+i)(x-i).$ We explicitly compute the duplication formula for $E$ as follows using the formulas from Chapter III:
+        \[
+        2(x,y) = \left(\frac{(x^2-1)^2}{4x(x^2+1)}, \frac{(x^2-1)x^4+6x^2+1)}{9xy(x^2+1)}\right).
+        \]
+        Thus $2(x,y)=O$ iff $x=0, x=\pm i$, or $y=0.$ But notice that $y=0$ iff $x\in \{\pm i, 0\}$ since $y^2=x^3+x=x(x+i)(x-i).$ Then indeed the only 2-torsion points are $O, (\pm i, 0), (0,0)\}.$
+        
+        
+        We write $p=m^2+n^2$ where we take $m$ to be odd and $n$ even, and let $\phi\in \End(E)$ be the Frobenius morphism,. By Theorem 2.3.1, we know that $\phi$ satisfies $\phi^2-a\phi+p=0$ in $\End(E)$. Since $E(\F_p)$ is ordinary, i.e., $\End(E(\F_p))$ is an order in a quadratic imaginary field, and $\End(E)\supset \Z[i]$ where $[i]=(x,y)\mapsto(-x, iy)$ where here $i^2=-1$ in $\F_p$, it follows that actually $\End(E)=\Z[i].$ Now $\phi \bar \phi = p = m^2+n^2$ gives that $\phi = a+bi$ up to associates, since $\Z[i]$ is a UFD. This shows that $a\in \{ \pm 2m, \pm 2n\}$. But if $a=\pm 2n$, then $a\equiv 0 \mod 4$, which yields
+        \[
+        \#E(\F_p) = p+1-a \equiv p+1 \equiv 2\mod 4
+        \]
+        which contradicts our previous assertion, so $a=\pm 2m$ and $\#E(\F_p) = p+1\pm 2m$.
+    \end{proof}
+
 \printbibliography
 
 \end{document}
