@@ -1712,16 +1712,16 @@ a_{mn}\!\!\!\!\sum_{\substack{k_1+\cdots+k_n=\ell-m \\ 1 \le k_i \le \lfloor(\el
     \]
     }
     \begin{proof}
-        First we consider the case where $p\equiv 3 \mod 4.$ By Example 4.5, we know the primes congruent to 3 modulo 4 are exactly the primes where $E(\F_p)$ is supersingular. We know from \_ $E(\F_p)$ is supersingular iff $A_p=0$, where $A_p$ is the coefficient of $x^{p-1}$ in the expansion of $(x^3+x)^{(p-1)/2}$. For $p\ge 5$ congruent to $3$ modulo 4, we have by Hasse's inequality that
+        First we consider the case where $p\equiv 3 \mod 4.$ By Example 4.5, we know the primes congruent to 3 modulo 4 are exactly the primes where $E(\F_p)$ is supersingular. We know from Theorem 4.1 (a) that $E(\F_p)$ is supersingular iff $A_p=0$, where $A_p$ is the coefficient of $x^{p-1}$ in the expansion of $(x^3+x)^{(p-1)/2}$ in $\F_p$. For $p\ge 5$, we have by Hasse's inequality that
         \[
         |a|\le 2\sqrt{p}<p.
         \]
-        Since $a\equiv A_p=0 \mod p$ and $|a|<p$, it follows that $a=0$ so $\#E(\F_p)=p+1-a=p+1\equiv 0 \mod 4.$
+        Since $a\equiv A_p=0 \mod p$ by the proof of Theorem 4.1 (a) and $|a|<p$, it follows that $a=0$ so $\#E(\F_p)=p+1-a=p+1\equiv 0 \mod 4.$
 
         We explicitly verify that for $p=3$, $E(\F_p)=\{O, (0,0), (2,0), (-2,0)\}$ so also $\# E(\F_p)=p+1.$
 
 
-        Now we may assume that $p\equiv 1 \mod 4$. Clearly it suffices to show $\#E(\F_p)[2]=4$ since the order of a subgroup divides the order of the group it lives in. Let $i\in \F_p$ be such that $i^2=-1.$ We claim $E(\F_p)[2]=\{O, (0,0), (\pm i, 0)\}$. For this claim, it suffices to show that if $P=(x,y)$ is such that $2P=O$, then $y=0$ since $x^3+x=x(x+i)(x-i).$ We explicitly compute the duplication formula for $E$ as follows using the formulas from Chapter III:
+        Now we may assume that $p\equiv 1 \mod 4$. Clearly it suffices to show $\#E(\F_p)[2]=4$ since the order of a subgroup divides the order of the group containing it. Let $i\in \F_p$ be such that $i^2=-1.$ We claim $E(\F_p)[2]=\{O, (0,0), (\pm i, 0)\}$. For this claim, it suffices to show that if $P=(x,y)$ is such that $2P=O$, then $y=0$ since $x^3+x=x(x+i)(x-i).$ We explicitly compute the duplication formula for $E$ as follows using the formulas from Chapter III:
         \[
         2(x,y) = \left(\frac{(x^2-1)^2}{4x(x^2+1)}, \frac{(x^2-1)x^4+6x^2+1)}{9xy(x^2+1)}\right).
         \]
